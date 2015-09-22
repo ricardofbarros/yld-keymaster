@@ -1,0 +1,28 @@
+{
+  "name": "yld-keymaster",
+  "version": "1.0.0",
+  "description": "YLD! Keymaster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ricardofbarros/yld-keymaster"
+  },
+  "author": {
+    "name": "Ricardo Barros",
+    "email": "ricardofbarros@hotmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardofbarros/yld-keymaster/issues"
+  },
+  "homepage": "https://github.com/ricardofbarros/yld-keymaster",
+  "dependencies": {
+    "pi-blaster.js": "^0.1.1"
+  },
+  "devDependencies": {
+    "standard": "^5.3.1"
+  }
+}
