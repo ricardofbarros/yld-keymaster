@@ -5,6 +5,7 @@ var piblaster = require('pi-blaster.js')
 
 function boot () {
   var client = net.createConnection(config.gk.port, config.gk.host)
+  moveRight()
 
   client.on('connect', function () {
     // Try to authenticate with the GK
