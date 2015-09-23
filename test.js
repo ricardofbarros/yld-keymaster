@@ -1,7 +1,7 @@
 var control = require('./lib/control')
 
-control.left()
+control.move()
 
 setTimeout(function () {
-  control.right()
-}, 1000)
+  control.default()
+}, 500)
