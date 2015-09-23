@@ -4,12 +4,15 @@ var config = require('./config')
 var control = require('./lib/control')
 
 function boot () {
+  // Create connection with GK
   var client = net.createConnection(config.gk.port, config.gk.host)
-  control.right()
+
+  // Reset servo position
+  control.default()
 
   client.on('connect', function () {
     // Try to authenticate with the GK
-    client.write(config.secureKey + '\r\n')
+    client.write('auth:' + config.secureKey + '\r\n')
   })
 
   client.on('data', function (data) {
@@ -17,13 +20,9 @@ function boot () {
 
     switch (data) {
       case 'open':
-        control.left()
-        setTimeout(function () {
-          control.right()
-        }, 1000)
-        break
+        return open()
       default:
-        control.right()
+        client.write('error\r\n')
     }
   })
 
@@ -33,6 +32,17 @@ function boot () {
       boot()
     }, config.reconnectTimeoutMs)
   })
+}
+
+function open (client) {
+  control.move()
+
+  setTimeout(function () {
+    control.default()
+    setTimeout(function () {
+      client.write('opened\r\n')
+    }, 500)
+  }, 500)
 }
 
 // Start keymaster
