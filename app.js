@@ -1,11 +1,11 @@
 // Dependencies
 var net = require('net')
 var config = require('./config')
-var piblaster = require('pi-blaster.js')
+var control = require('./lib/control')
 
 function boot () {
   var client = net.createConnection(config.gk.port, config.gk.host)
-  moveRight()
+  control.right()
 
   client.on('connect', function () {
     // Try to authenticate with the GK
@@ -17,13 +17,13 @@ function boot () {
 
     switch (data) {
       case 'open':
-        moveLeft()
+        control.left()
         setTimeout(function () {
-          moveRight()
+          control.right()
         }, 1000)
         break
       default:
-        moveRight()
+        control.right()
     }
   })
 
@@ -33,14 +33,6 @@ function boot () {
       boot()
     }, config.reconnectTimeoutMs)
   })
-}
-
-function moveLeft () {
-  piblaster.setPwm(config.gpioPin, 0.06)
-}
-
-function moveRight () {
-  piblaster.setPwm(config.gpioPin, 0.24)
 }
 
 // Start keymaster
