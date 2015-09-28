@@ -5,7 +5,7 @@ var control = require('./lib/control')
 
 function boot () {
   // Create connection with GK
-  var client = net.createConnection(config.gk.port, config.gk.host)
+  var client = net.connect(config.gk)
 
   // Reset servo position
   control.default()
