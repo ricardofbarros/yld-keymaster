@@ -20,7 +20,7 @@ function boot () {
 
     switch (data) {
       case 'open':
-        return open()
+        return open(client)
       default:
         client.write('error\r\n')
     }
