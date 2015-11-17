@@ -3,6 +3,8 @@ var net = require('net')
 var config = require('./config')
 var control = require('./lib/control')
 
+var min = 60000;
+
 function boot () {
   // Create connection with GK
   var client = net.connect(config.gk)
@@ -44,6 +46,11 @@ function open (client) {
     }, 500)
   }, 500)
 }
+
+
+setTimeout(function () {
+  process.exit(0)
+}, min * 20)
 
 // Start keymaster
 boot()
